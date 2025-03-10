@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Manager extends BasicManager {
-    private ArrayList<Student> studentList = new ArrayList<Student>();
+    protected ArrayList<Student> studentList = new ArrayList<Student>();
 
     public Manager(String name, int ssn, String employeeID) {
         super(name, ssn, employeeID);
@@ -26,6 +26,21 @@ public class Manager extends BasicManager {
             }
         }
         return false;
+    }
+
+    public String toString() {
+        String information = "MANAGER\n";
+        information += "NAME: " + this.getName() + "\n";
+        information += "EMPLOYEE ID: " + this.getEmployeeId();
+        information += "SSN: " + this.getSSN() + "\n";
+
+        if (studentList.size() > 0) {
+            information += "Students: \n";
+            for (Student student : studentList) {
+                information += "  -" + student.getName() + "\n";
+            }
+        }
+        return information;
     }
 
     public static void main(String[] args) {
