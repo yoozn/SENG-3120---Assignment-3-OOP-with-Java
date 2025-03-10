@@ -32,4 +32,17 @@ public class Student extends Person {
 /*     public String toString() {
         return ""
     } */
+
+   public static void main(String[] args) {
+    Student stud01 = new Student("Bob", 1234, "S54321s");
+
+    System.out.println(stud01.getSID());
+    System.out.println(stud01.getName());
+    System.out.println(stud01.getSSN());
+    System.out.println(stud01.getBedLabel());
+    stud01.setBedLabel(45);
+    System.out.println(stud01.getBedLabel());
+
+   }
+
 }
