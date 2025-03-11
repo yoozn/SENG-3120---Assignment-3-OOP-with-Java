@@ -117,6 +117,55 @@ public class StudentResidenceSystem {
 
         scanner.close();
     }
+    
+    public void systemState() {
+        System.out.println("Current System State:");
+        System.out.println("Students:");
+        for (Student student : students.values()) {
+            System.out.println(student.toString());
+        }
+
+        System.out.println("Managers: ");
+        for (Manager manager : managers.values()) {
+            System.out.println(manager.toString());
+        }
+
+        System.out.println("Residence information: ");
+        residence.toString();
+    }
+
+    public String toString() {
+        String information = "";
+        information += "Students: \n";
+        for (Student student : students.values()) {
+            information += "   -" + student.getName() + "\n";
+        }
+
+        information += ("Managers: \n");
+        for (Manager manager : managers.values()) {
+            information += "  - " + manager.getName() + "\n";
+        }
+
+        information += ("Residence information: \n");
+        information += "Residence name: " + residence.getName() + "\n";
+        information += "Minimum bed label: " + residence.getMinBedLabel() + "\n";
+        information += "Maximum bed label: " + residence.getMaxBedLabel() + "\n";
+        return information;
+    }
+
+    public void displayEmptyBeds() {
+
+    }
+
+    public void releaseStudent() {
+
+    }
+
+    public static void main(String[] args) {
+        StudentResidenceSystem SRS = new StudentResidenceSystem();
+    }
+
+
 }
 
 
