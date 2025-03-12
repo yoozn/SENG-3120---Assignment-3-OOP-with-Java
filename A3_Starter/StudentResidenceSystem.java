@@ -3,31 +3,35 @@ import java.util.Scanner;
 
 public class StudentResidenceSystem {
     private Maintenance residence;
-    TreeMap<String, Student> students;
-    TreeMap<String, Manager> managers;
+    TreeMap<String, Student> students = new TreeMap<String, Student>();
+    TreeMap<String, Manager> managers = new TreeMap<String, Manager>();
+    private Scanner scanner;
 
-    public StudentResidenceSystem() {
-        Scanner scanner = new Scanner(System.in);
+    public StudentResidenceSystem(Scanner scanner) {
+        this.scanner = scanner;
         System.out.print("Enter name of residence: ");
         String resName = scanner.nextLine();
 
         System.out.print("Enter the minimum bed label: ");
         int minBedLabel = scanner.nextInt();
+        scanner.nextLine();
 
         System.out.print("Enter the maximum bed label: ");
         int maxBedLabel = scanner.nextInt();
+        scanner.nextLine();
 
         residence = new Maintenance(resName, minBedLabel, maxBedLabel);
-        scanner.close();
+        //scanner.close();
     }
 
     public void addStudent() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter student name: ");
         String studentName = scanner.nextLine();
         
         System.out.print("Enter student SSN: ");
         int ssn = scanner.nextInt();
+        scanner.nextLine();
 
         System.out.print("Enter student ID");
         String SID = scanner.nextLine();
@@ -35,11 +39,11 @@ public class StudentResidenceSystem {
         Student newStudent = new Student(studentName, ssn, SID);
         students.put(SID, newStudent);
 
-        scanner.close();
+        //scanner.close();
     }
 
     public void addManager() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
 
         System.out.print("Is the manager a consultant? (y/n) ");
         String consultantCheck = scanner.nextLine();
@@ -51,6 +55,7 @@ public class StudentResidenceSystem {
 
         System.out.print("Enter " + employeeRole + " SSN: ");
         int ssn = scanner.nextInt();
+        scanner.nextLine();
 
         System.out.print("Enter " + employeeRole + " employee ID: ");
         String employeeID = scanner.nextLine();
@@ -65,12 +70,12 @@ public class StudentResidenceSystem {
             managers.put(employeeID, newManager);
         }
 
-        scanner.close();
+        //scanner.close();
         
     }
 
     public void assignManagerToStudent() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter managers employee ID: ");
         String employeeID = scanner.nextLine();
 
@@ -83,26 +88,27 @@ public class StudentResidenceSystem {
         manager.addStudent(student);
         student.addManager(manager);
 
-        scanner.close();
+        //scanner.close();
     }
 
     public void assignBed() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter students ID: ");
         String SID = scanner.nextLine();
 
         System.out.print("Enter bed label: ");
         int bedLabel = scanner.nextInt();
+        scanner.nextLine();
 
         Student student = students.get(SID);
 
         residence.assignStudentToBed(student, bedLabel);
 
-        scanner.close();
+        //scanner.close();
     }
 
     public void dropAssociation() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter managers employee ID: ");
         String employeeID = scanner.nextLine();
 
@@ -115,7 +121,7 @@ public class StudentResidenceSystem {
         manager.removeStudent(SID);
         student.removeManager(employeeID);
 
-        scanner.close();
+        //scanner.close();
     }
     
     public void systemState() {
@@ -162,7 +168,55 @@ public class StudentResidenceSystem {
     }
 
     public static void main(String[] args) {
-        StudentResidenceSystem SRS = new StudentResidenceSystem();
+        Scanner scanner = new Scanner(System.in); 
+        StudentResidenceSystem SRS = new StudentResidenceSystem(scanner);
+
+        while (true) { 
+            System.out.println("Student Residence System:");
+            System.out.println("1. Quit");
+            System.out.println("2. Add new student");
+            System.out.println("3. Add new manager");
+            System.out.println("4. Assign manager to student");
+            System.out.println("5. Display empty beds");
+            System.out.println("6. Assign student bed");
+            System.out.println("7. Release student");
+            System.out.println("8. Drop manager-student association");
+            System.out.println("9. Display current system state");
+            int selection = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (selection) {
+                case 1:
+                    scanner.close();
+                    break;
+                case 2:
+                    SRS.addStudent();
+                    break;
+                case 3:
+                    SRS.addManager();
+                    break;
+                case 4:
+                    SRS.assignManagerToStudent();
+                    break;
+                case 5:
+                    SRS.displayEmptyBeds();
+                    break;
+                case 6:
+                    SRS.assignBed();
+                    break;
+                case 7:
+                    SRS.releaseStudent();
+                    break;
+                case 8:
+                    SRS.dropAssociation();
+                    break;
+                case 9:
+                    SRS.systemState();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
 

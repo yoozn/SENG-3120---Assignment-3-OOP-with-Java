@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "StudentResidenceSystem",
+            "request": "launch",
+            "mainClass": "StudentResidenceSystem",
+            "projectName": "SENG-3120---Assignment-3-OOP-with-Java_ecc33d35"
+        },
+        {
+            "type": "java",
+            "name": "Manager",
+            "request": "launch",
+            "mainClass": "Manager",
+            "projectName": "SENG-3120---Assignment-3-OOP-with-Java_ecc33d35"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Student",
+            "request": "launch",
+            "mainClass": "Student",
+            "projectName": "SENG-3120---Assignment-3-OOP-with-Java_ecc33d35"
+        }
+    ]
+}
