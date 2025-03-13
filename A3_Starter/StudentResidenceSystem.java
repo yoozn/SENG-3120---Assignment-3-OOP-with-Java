@@ -33,7 +33,7 @@ public class StudentResidenceSystem {
         int ssn = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Enter student ID");
+        System.out.print("Enter student ID: ");
         String SID = scanner.nextLine();
 
         Student newStudent = new Student(studentName, ssn, SID);
@@ -47,8 +47,9 @@ public class StudentResidenceSystem {
 
         System.out.print("Is the manager a consultant? (y/n) ");
         String consultantCheck = scanner.nextLine();
+        consultantCheck = consultantCheck.trim();
 
-        String employeeRole = (consultantCheck == "y") ? "consultant" : "manager";
+        String employeeRole = (consultantCheck.equals("y")) ? "consultant" : "manager";
 
         System.out.print("Enter " + employeeRole + " name: ");
         String employeeName = scanner.nextLine();
@@ -60,14 +61,18 @@ public class StudentResidenceSystem {
         System.out.print("Enter " + employeeRole + " employee ID: ");
         String employeeID = scanner.nextLine();
 
-        if (consultantCheck == "y") {
-            Consultant newConsultant = new Consultant(employeeName, ssn, employeeID);
+        if (consultantCheck.equals("y")) {
+            Manager newConsultant = new Consultant(employeeName, ssn, employeeID);
             managers.put(employeeID, newConsultant);
+            System.out.println("Put Consultant into list");
+            System.out.println(managers.get(employeeID));
         }
 
-        else if (consultantCheck == "n") {
+        else if (consultantCheck.equals("n")) {
             Manager newManager = new Manager(employeeName, ssn, employeeID);
             managers.put(employeeID, newManager);
+            System.out.println("Put Manager into list");
+            System.out.println(managers.get(employeeID));
         }
 
         //scanner.close();

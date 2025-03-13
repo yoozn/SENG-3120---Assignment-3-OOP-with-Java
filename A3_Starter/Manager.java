@@ -12,8 +12,8 @@ public class Manager extends BasicManager {
     }
 
     public void removeStudent(String SID) {
-        for (int i = studentList.size() -1; i >= 0; i--) {
-            if (studentList.get(i).getSID() == SID) {
+        for (int i = studentList.size()-1; i >= 0; i--) {
+            if (studentList.get(i).getSID().equals(SID)) {
                 studentList.remove(i);
             }
         }
@@ -21,7 +21,7 @@ public class Manager extends BasicManager {
 
     public Boolean hasStudent(String SID) {
         for (int i = 0; i < studentList.size(); i++) {
-            if (studentList.get(i).getSID() == SID) {
+            if (studentList.get(i).getSID().equals(SID)) {
                 return true;
             }
         }
@@ -31,7 +31,7 @@ public class Manager extends BasicManager {
     public String toString() {
         String information = "MANAGER\n";
         information += "NAME: " + this.getName() + "\n";
-        information += "EMPLOYEE ID: " + this.getEmployeeId();
+        information += "EMPLOYEE ID: " + this.getEmployeeId() + "\n";
         information += "SSN: " + this.getSSN() + "\n";
 
         if (studentList.size() > 0) {

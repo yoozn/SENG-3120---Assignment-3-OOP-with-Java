@@ -28,7 +28,7 @@ public class Student extends Person {
 
     public void removeManager(String employeeID) {
         for (int i = managerList.size() -1; i >= 0; i--) {
-            if (managerList.get(i).getEmployeeId() == employeeID) {
+            if (managerList.get(i).getEmployeeId().equals(employeeID)) {
                 managerList.remove(i);
             }
         }
@@ -36,7 +36,7 @@ public class Student extends Person {
 
     public Boolean hasManager(String employeeID) {
         for (Manager manager : managerList) {
-            if (manager.getEmployeeId() == employeeID) {
+            if (manager.getEmployeeId().equals(employeeID)) {
                 return true;
             }
         }

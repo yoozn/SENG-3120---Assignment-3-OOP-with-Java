@@ -6,7 +6,7 @@ public class Consultant extends Manager {
     public String toString() {
         String information = "CONSULTANT:\n";
         information += "NAME: " + this.getName() + "\n";
-        information += "EMPLOYEE ID: " + this.getEmployeeId();
+        information += "EMPLOYEE ID: " + this.getEmployeeId() + "\n";
         information += "SSN: " + this.getSSN() + "\n";
 
         if (studentList.size() > 0) {
