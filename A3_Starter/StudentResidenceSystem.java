@@ -124,10 +124,15 @@ public class StudentResidenceSystem {
         scanner.nextLine();
 
         System.out.print("Enter " + employeeRole + " employee ID: ");
-        
+        /**
+         * The new employees employee ID from user input
+         */
         String employeeID = scanner.nextLine();
 
         if (consultantCheck.equals("y")) {
+            /**
+             * The instance of the new consultant from users inputs
+             */
             Manager newConsultant = new Consultant(employeeName, ssn, employeeID);
             managers.put(employeeID, newConsultant);
             System.out.println("Put Consultant into list");
@@ -135,6 +140,9 @@ public class StudentResidenceSystem {
         }
 
         else if (consultantCheck.equals("n")) {
+            /**
+             * The instance of the new manager from users inputs
+             */
             Manager newManager = new Manager(employeeName, ssn, employeeID);
             managers.put(employeeID, newManager);
             System.out.println("Put Manager into list");
@@ -145,15 +153,30 @@ public class StudentResidenceSystem {
         
     }
 
+    /**
+     * Assign a manager to a student (and a student to a manager)
+     */
     public void assignManagerToStudent() {
         //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter managers employee ID: ");
+        /**
+         * The employees id to be assigned to student from user input
+         */
         String employeeID = scanner.nextLine();
 
         System.out.print("Enter students ID: ");
+        /**
+         * The students id to be assigned to manager from user input
+         */
         String SID = scanner.nextLine();
 
+        /**
+         * The instance of the manager taken from list of managers
+         */
         Manager manager = managers.get(employeeID);
+        /**
+         * The instance of the student taken from list of students
+         */
         Student student = students.get(SID);
 
         manager.addStudent(student);
@@ -162,15 +185,27 @@ public class StudentResidenceSystem {
         //scanner.close();
     }
 
+    /**
+     * Assign a bed to a student
+     */
     public void assignBed() {
         //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter students ID: ");
+        /**
+         * The student id of the student to be assigned a bed, taken from user input
+         */
         String SID = scanner.nextLine();
 
         System.out.print("Enter bed label: ");
+        /**
+         * The bed label of the bed to be assigned to the student, taken from user input
+         */
         int bedLabel = scanner.nextInt();
         scanner.nextLine();
 
+        /**
+         * The instance of the student to be assigned a bed, taken from list of students
+         */
         Student student = students.get(SID);
 
         residence.assignStudentToBed(student, bedLabel);
@@ -178,15 +213,30 @@ public class StudentResidenceSystem {
         //scanner.close();
     }
 
+    /**
+     * Drop the relationship between a manager and a student
+     */
     public void dropAssociation() {
         //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter managers employee ID: ");
+        /**
+         * The id of the employee to be dropped from a student, taken from user input
+         */
         String employeeID = scanner.nextLine();
 
         System.out.print("Enter students ID: ");
+        /**
+         * The id of the student to be dropped from a manager, taken from user input
+         */
         String SID = scanner.nextLine();
 
+        /**
+         * The instance of the manager to be dropped from a student, taken from list of managers
+         */
         Manager manager = managers.get(employeeID);
+        /**
+         * The instance of the student to be dropped from a manager, taken from list of students
+         */
         Student student = students.get(SID);
 
         manager.removeStudent(SID);
@@ -195,6 +245,9 @@ public class StudentResidenceSystem {
         //scanner.close();
     }
     
+    /**
+     * Print out the current system state
+     */
     public void systemState() {
         System.out.println("Current System State:");
         System.out.println("Students:");
@@ -211,7 +264,13 @@ public class StudentResidenceSystem {
         residence.toString();
     }
 
+    /**
+     * Return a string representation of the Student Residence System
+     */
     public String toString() {
+        /**
+         * The string that will be returned
+         */
         String information = "";
         information += "Students: \n";
         for (Student student : students.values()) {
@@ -230,14 +289,26 @@ public class StudentResidenceSystem {
         return information;
     }
 
+    /**
+     * Display the available beds
+     */
     public void displayEmptyBeds() {
 
     }
 
+    /**
+     * Release a student
+     */
     public void releaseStudent() {
 
     }
 
+
+    /**
+     * The main execution of the Student Residence System
+     * 
+     * @param args arguments of default java main function
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); 
         StudentResidenceSystem SRS = new StudentResidenceSystem(scanner);
