@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 /**
- * A model of a manager who has a name, health number, and employee id.
+ * A model of a manager who has a name, health number, employee id, and list of students.
  */
 public class Manager extends BasicManager {
     /** 
@@ -12,7 +12,7 @@ public class Manager extends BasicManager {
     /**
      * Initialize an instance of a Manager with the given name, social insurance number, and employee id.
      * @param name the name of the manager
-     * @param ssn the social insurance name of hte manager
+     * @param ssn the social insurance number of the manager
      * @param employeeID the id of the manager
      */
     public Manager(String name, int ssn, String employeeID) {
@@ -40,8 +40,8 @@ public class Manager extends BasicManager {
     }
 
     /**
-     * Check if the manager list contains a student
-     * @param SID the student id of the student to be added
+     * Check if the manager list contains a specified student
+     * @param SID the student id of the student to be checked
      * @return true or false depending on if student is in list
      * @precond SID != null && !SID.equals("")
      */
@@ -89,4 +89,4 @@ public class Manager extends BasicManager {
         manager01.addStudent(student02);
         System.out.println(manager01.hasStudent("5"));
     }
-
+}

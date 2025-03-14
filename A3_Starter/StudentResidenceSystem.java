@@ -1,64 +1,130 @@
 import java.util.TreeMap;
 import java.util.Scanner;
 
+
+/**
+ * A model of the overarching Student Residence Management System
+ */
 public class StudentResidenceSystem {
+    /**
+     * The instance of the residence
+     */
     private Maintenance residence;
+    /**
+     * The collection of all the students in the system
+     */
     TreeMap<String, Student> students = new TreeMap<String, Student>();
+    /**
+     * The collection of all the managers in the system
+     */
     TreeMap<String, Manager> managers = new TreeMap<String, Manager>();
+    /**
+     * The scanner to take user input
+     */
     private Scanner scanner;
 
+    /**
+     * Initialize an instance of the Student Residence System which takes the scanner as parameter
+     * @param scanner
+     */
     public StudentResidenceSystem(Scanner scanner) {
+        /**
+         * Make the local scanner the same instance as the external scanner
+         */
         this.scanner = scanner;
         System.out.print("Enter name of residence: ");
+        /**
+         * The name of the residence from user input
+         */
         String resName = scanner.nextLine();
 
         System.out.print("Enter the minimum bed label: ");
+        /**
+         * The minimum bed label of the residence from user input
+         */
         int minBedLabel = scanner.nextInt();
         scanner.nextLine();
 
         System.out.print("Enter the maximum bed label: ");
+        /**
+         * The maximum bed label from user input
+         */
         int maxBedLabel = scanner.nextInt();
         scanner.nextLine();
 
+        /**
+         * The instance of the residence created from user input
+         */
         residence = new Maintenance(resName, minBedLabel, maxBedLabel);
         //scanner.close();
     }
 
+    /**
+     * Add a new student to the system
+     */
     public void addStudent() {
         //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter student name: ");
+        /**
+         * The new students name from the user input
+         */
         String studentName = scanner.nextLine();
         
         System.out.print("Enter student SSN: ");
+        /**
+         * The new students social insurance number from the users input
+         */
         int ssn = scanner.nextInt();
         scanner.nextLine();
 
         System.out.print("Enter student ID: ");
+        /**
+         * The new students student id from the user input
+         */
         String SID = scanner.nextLine();
 
+        /**
+         * The instance of the new student created from the users inputs
+         */
         Student newStudent = new Student(studentName, ssn, SID);
         students.put(SID, newStudent);
 
         //scanner.close();
     }
 
+    /**
+     * Add a new manager to the system
+     */
     public void addManager() {
         //Scanner scanner = new Scanner(System.in);
 
         System.out.print("Is the manager a consultant? (y/n) ");
+        /**
+         * The check variable to see if the new manager is a consultant
+         */
         String consultantCheck = scanner.nextLine();
         consultantCheck = consultantCheck.trim();
 
+        /**
+         * The employee role (manager or consultant) from consultant check
+         */
         String employeeRole = (consultantCheck.equals("y")) ? "consultant" : "manager";
 
         System.out.print("Enter " + employeeRole + " name: ");
+        /**
+         * The new employees name from user
+         */
         String employeeName = scanner.nextLine();
 
         System.out.print("Enter " + employeeRole + " SSN: ");
+        /**
+         * The new employees social insurance number from user input
+         */
         int ssn = scanner.nextInt();
         scanner.nextLine();
 
         System.out.print("Enter " + employeeRole + " employee ID: ");
+        
         String employeeID = scanner.nextLine();
 
         if (consultantCheck.equals("y")) {
