@@ -26,6 +26,7 @@ public class StudentResidenceSystem {
     /**
      * Initialize an instance of the Student Residence System which takes the scanner as parameter
      * @param scanner
+     * @precond resName != null && !resName.equals("") && minBedLabel >= 0 && maxBedLabel >= minBedLabel
      */
     public StudentResidenceSystem(Scanner scanner) {
         /**
@@ -36,7 +37,12 @@ public class StudentResidenceSystem {
         /**
          * The name of the residence from user input
          */
+
+
         String resName = scanner.nextLine();
+        if (resName == null || resName.equals(""))
+            throw new IllegalArgumentException("The name of a Residence cannot be null or empty.  "
+                    + "It is " + resName);
 
         System.out.print("Enter the minimum bed label: ");
         /**
@@ -52,6 +58,10 @@ public class StudentResidenceSystem {
         int maxBedLabel = scanner.nextInt();
         scanner.nextLine();
 
+        if (minBedLabel < 0 || maxBedLabel < minBedLabel)
+            throw new IllegalArgumentException("The bed labels " + minBedLabel + " and " + maxBedLabel
+                    + " are invalid as they cannot be negative, and must have at least one bed.");
+
         /**
          * The instance of the residence created from user input
          */
@@ -61,6 +71,7 @@ public class StudentResidenceSystem {
 
     /**
      * Add a new student to the system
+     * @precond studentName != null && !studentName.equals("") && ssn >= 0 && SID != null & !SID.equals("")
      */
     public void addStudent() {
         //Scanner scanner = new Scanner(System.in);
@@ -69,6 +80,10 @@ public class StudentResidenceSystem {
          * The new students name from the user input
          */
         String studentName = scanner.nextLine();
+
+        if (studentName == null || studentName.equals(""))
+            throw new IllegalArgumentException("The name of a student cannot be null or empty.  "
+                    + "It is " + studentName);
         
         System.out.print("Enter student SSN: ");
         /**
@@ -77,11 +92,17 @@ public class StudentResidenceSystem {
         int ssn = scanner.nextInt();
         scanner.nextLine();
 
+        if (ssn < 0 )
+            throw new IllegalArgumentException("The ssn is invalid as it cannot be negative.");
+
         System.out.print("Enter student ID: ");
         /**
          * The new students student id from the user input
          */
         String SID = scanner.nextLine();
+        if (SID == null || SID.equals(""))
+            throw new IllegalArgumentException("The ID of a student cannot be null or empty.  "
+                    + "It is " + SID);
 
         /**
          * The instance of the new student created from the users inputs
@@ -94,6 +115,7 @@ public class StudentResidenceSystem {
 
     /**
      * Add a new manager to the system
+     * @precond consultantCheck != "y" || consultantCheck != "n" && employeeName != null & !employeeName.equals("") && ssn >= 0 && employeeID != null & !employeeID.equals("")
      */
     public void addManager() {
         //Scanner scanner = new Scanner(System.in);
@@ -104,6 +126,10 @@ public class StudentResidenceSystem {
          */
         String consultantCheck = scanner.nextLine();
         consultantCheck = consultantCheck.trim();
+
+        if (consultantCheck == null || consultantCheck.equals(""))
+            throw new IllegalArgumentException("The input must be either y or n.  "
+                    + "It is " + consultantCheck);
 
         /**
          * The employee role (manager or consultant) from consultant check
@@ -116,6 +142,10 @@ public class StudentResidenceSystem {
          */
         String employeeName = scanner.nextLine();
 
+        if (employeeName == null || employeeName.equals(""))
+            throw new IllegalArgumentException("The name of a employee cannot be null or empty.  "
+                    + "It is " + employeeName);
+
         System.out.print("Enter " + employeeRole + " SSN: ");
         /**
          * The new employees social insurance number from user input
@@ -123,11 +153,18 @@ public class StudentResidenceSystem {
         int ssn = scanner.nextInt();
         scanner.nextLine();
 
+        if (ssn < 0 )
+            throw new IllegalArgumentException("The ssn is invalid as it cannot be negative.");
+
         System.out.print("Enter " + employeeRole + " employee ID: ");
         /**
          * The new employees employee ID from user input
          */
         String employeeID = scanner.nextLine();
+
+        if (employeeID == null || employeeID.equals(""))
+            throw new IllegalArgumentException("The ID of a employee cannot be null or empty.  "
+                    + "It is " + employeeID);
 
         if (consultantCheck.equals("y")) {
             /**
@@ -155,6 +192,7 @@ public class StudentResidenceSystem {
 
     /**
      * Assign a manager to a student (and a student to a manager)
+     * @precond employeeID != null & !employeeID.equals("") && && SID != null & !SID.equals("")
      */
     public void assignManagerToStudent() {
         //Scanner scanner = new Scanner(System.in);
@@ -164,11 +202,20 @@ public class StudentResidenceSystem {
          */
         String employeeID = scanner.nextLine();
 
+        if (employeeID == null || employeeID.equals(""))
+            throw new IllegalArgumentException("The ID of a employee cannot be null or empty.  "
+                    + "It is " + employeeID);
+
+
         System.out.print("Enter students ID: ");
         /**
          * The students id to be assigned to manager from user input
          */
         String SID = scanner.nextLine();
+
+        if (SID == null || SID.equals(""))
+            throw new IllegalArgumentException("The ID of a student cannot be null or empty.  "
+                    + "It is " + SID);
 
         /**
          * The instance of the manager taken from list of managers
@@ -187,6 +234,7 @@ public class StudentResidenceSystem {
 
     /**
      * Assign a bed to a student
+     * @precond SID != null & !SID.equals("") && bedLabel >= 0
      */
     public void assignBed() {
         //Scanner scanner = new Scanner(System.in);
@@ -196,12 +244,20 @@ public class StudentResidenceSystem {
          */
         String SID = scanner.nextLine();
 
+        if (SID == null || SID.equals(""))
+        throw new IllegalArgumentException("The ID of a student cannot be null or empty.  "
+                + "It is " + SID);
+
         System.out.print("Enter bed label: ");
         /**
          * The bed label of the bed to be assigned to the student, taken from user input
          */
         int bedLabel = scanner.nextInt();
         scanner.nextLine();
+
+        if (bedLabel < 0)
+        throw new IllegalArgumentException("The bed label must be non-negative.");
+
 
         /**
          * The instance of the student to be assigned a bed, taken from list of students
@@ -215,6 +271,7 @@ public class StudentResidenceSystem {
 
     /**
      * Drop the relationship between a manager and a student
+     * @precond employeeID != null & !employeeID.equals("") && && SID != null & !SID.equals("")
      */
     public void dropAssociation() {
         //Scanner scanner = new Scanner(System.in);
@@ -224,11 +281,19 @@ public class StudentResidenceSystem {
          */
         String employeeID = scanner.nextLine();
 
+        if (employeeID == null || employeeID.equals(""))
+        throw new IllegalArgumentException("The ID of a employee cannot be null or empty.  "
+                + "It is " + employeeID);
+
         System.out.print("Enter students ID: ");
         /**
          * The id of the student to be dropped from a manager, taken from user input
          */
         String SID = scanner.nextLine();
+
+        if (SID == null || SID.equals(""))
+        throw new IllegalArgumentException("The ID of a student cannot be null or empty.  "
+                + "It is " + SID);
 
         /**
          * The instance of the manager to be dropped from a student, taken from list of managers

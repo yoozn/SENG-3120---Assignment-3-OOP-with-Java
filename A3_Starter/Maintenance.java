@@ -200,7 +200,14 @@ public class Maintenance
 
 
     //UNTESTED
+    /**
+     * Display the available beds
+     * @return an array list of available beds
+     */
     public ArrayList<Student> availableBeds() {
+        /**
+         * The list of available beds that will be returned
+         */
         ArrayList<Student> emptyBeds = new ArrayList<Student>();
         for (int i = 0; i < beds.length; i++) {
             if (!isOccupied(internalToExternalLabel(i))) {
@@ -211,6 +218,10 @@ public class Maintenance
     }
 
     //UNTESTED
+    /**
+     * Free a bed from the residence
+     * @param bedLabel the label of the bed to be freed
+     */
     public void freeBed(int bedLabel) {
 
         beds[externalToInternalIndex(bedLabel)] = null;
