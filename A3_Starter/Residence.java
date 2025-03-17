@@ -205,7 +205,6 @@ public class Residence
     }
 
 
-    //UNTESTED
     /**
      * Display the available beds
      * @return an array list of available beds
@@ -223,7 +222,6 @@ public class Residence
         return emptyBeds;
     }
 
-    //UNTESTED
     /**
      * Free a bed from the residence
      * @param bedLabel the label of the bed to be freed
