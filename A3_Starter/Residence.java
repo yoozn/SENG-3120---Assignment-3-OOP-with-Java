@@ -1,3 +1,9 @@
+/**
+ * Brock Young 
+ * T00708314 
+ * March 16, 2025
+ */
+
 /*
   SENG 3120 Course material
   Copyright (c) 2025
@@ -13,7 +19,7 @@
      Starter File for Assignment 3
  */
 
-
+import java.util.ArrayList;
 /**
  * A Residence of a hospital with a specified number of beds with consecutive labels.
  */
@@ -33,7 +39,7 @@ public class Residence
      * An array to represent the beds of the Residence.  Each bed is empty (null)
      * or else has a Person in it.
      */
-    private Person[] beds;
+    private Student[] beds;
 
     /**
      * Initialize the Residence with the name given, and with beds those labels are
@@ -54,7 +60,7 @@ public class Residence
 
         name = wName;
         minBedLabel = wMinBedLabel;
-        beds = new Person[wMaxBedLabel - wMinBedLabel + 1];
+        beds = new Student[wMaxBedLabel - wMinBedLabel + 1];
     }
 
     /**
@@ -135,7 +141,7 @@ public class Residence
      * @precond isValidLabel(bedLabel) && isOccupied(bedLabel)
      * @return  the student in the specified bed
      */
-    public Person getPerson(int bedLabel)
+    public Student getStudent(int bedLabel)
     {
         if (! isValidLabel(bedLabel))
             throw new IllegalArgumentException("The value " + bedLabel
@@ -149,11 +155,11 @@ public class Residence
 
     /**
      * Assign the specified student to the specified bed.
-     * @param p  the student to be assigned a bed
+     * @param s  the student to be assigned a bed
      * @param bedLabel  the label of the bed that the student is to be assigned
      * @precond  isValidLabel(bedLabel) && !isOccupied(bedLabel)
      */
-    public void assignPersonToBed(Person p, int bedLabel)
+    public void assignStudentToBed(Student s, int bedLabel)
     {
         if (! isValidLabel(bedLabel))
             throw new IllegalArgumentException("The value " + bedLabel
@@ -164,7 +170,7 @@ public class Residence
                     + beds[externalToInternalIndex(bedLabel)]
                     + " so cannot be assigned to another student");
 
-        beds[externalToInternalIndex(bedLabel)] = p;
+        beds[externalToInternalIndex(bedLabel)] = s;
     }
 
     /**
@@ -198,6 +204,35 @@ public class Residence
         return bedLabel >= minBedLabel && bedLabel <= minBedLabel + beds.length - 1;
     }
 
+
+    //UNTESTED
+    /**
+     * Display the available beds
+     * @return an array list of available beds
+     */
+    public ArrayList<Student> availableBeds() {
+        /**
+         * The list of available beds that will be returned
+         */
+        ArrayList<Student> emptyBeds = new ArrayList<Student>();
+        for (int i = 0; i < beds.length; i++) {
+            if (!isOccupied(internalToExternalLabel(i))) {
+                emptyBeds.add(beds[i]);
+            }
+        }
+        return emptyBeds;
+    }
+
+    //UNTESTED
+    /**
+     * Free a bed from the residence
+     * @param bedLabel the label of the bed to be freed
+     */
+    public void freeBed(int bedLabel) {
+
+        beds[externalToInternalIndex(bedLabel)] = null;
+
+    }
 
     /**
      * A method to test the class.

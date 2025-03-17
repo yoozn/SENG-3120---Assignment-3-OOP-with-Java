@@ -1,3 +1,9 @@
+/**
+ * Brock Young 
+ * T00708314 
+ * March 16, 2025
+ */
+
 import java.util.TreeMap;
 import java.util.Scanner;
 
@@ -9,7 +15,7 @@ public class StudentResidenceSystem {
     /**
      * The instance of the residence
      */
-    private Maintenance residence;
+    private Residence residence;
     /**
      * The collection of all the students in the system
      */
@@ -37,8 +43,6 @@ public class StudentResidenceSystem {
         /**
          * The name of the residence from user input
          */
-
-
         String resName = scanner.nextLine();
         if (resName == null || resName.equals(""))
             throw new IllegalArgumentException("The name of a Residence cannot be null or empty.  "
@@ -65,8 +69,7 @@ public class StudentResidenceSystem {
         /**
          * The instance of the residence created from user input
          */
-        residence = new Maintenance(resName, minBedLabel, maxBedLabel);
-        //scanner.close();
+        residence = new Residence(resName, minBedLabel, maxBedLabel);
     }
 
     /**
@@ -110,7 +113,6 @@ public class StudentResidenceSystem {
         Student newStudent = new Student(studentName, ssn, SID);
         students.put(SID, newStudent);
 
-        //scanner.close();
     }
 
     /**
@@ -118,7 +120,6 @@ public class StudentResidenceSystem {
      * @precond consultantCheck != "y" || consultantCheck != "n" && employeeName != null & !employeeName.equals("") && ssn >= 0 && employeeID != null & !employeeID.equals("")
      */
     public void addManager() {
-        //Scanner scanner = new Scanner(System.in);
 
         System.out.print("Is the manager a consultant? (y/n) ");
         /**
@@ -186,7 +187,6 @@ public class StudentResidenceSystem {
             System.out.println(managers.get(employeeID));
         }
 
-        //scanner.close();
         
     }
 
@@ -195,7 +195,6 @@ public class StudentResidenceSystem {
      * @precond employeeID != null & !employeeID.equals("") && && SID != null & !SID.equals("")
      */
     public void assignManagerToStudent() {
-        //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter managers employee ID: ");
         /**
          * The employees id to be assigned to student from user input
@@ -229,7 +228,6 @@ public class StudentResidenceSystem {
         manager.addStudent(student);
         student.addManager(manager);
 
-        //scanner.close();
     }
 
     /**
@@ -266,7 +264,6 @@ public class StudentResidenceSystem {
 
         residence.assignStudentToBed(student, bedLabel);
 
-        //scanner.close();
     }
 
     /**
@@ -274,7 +271,6 @@ public class StudentResidenceSystem {
      * @precond employeeID != null & !employeeID.equals("") && && SID != null & !SID.equals("")
      */
     public void dropAssociation() {
-        //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter managers employee ID: ");
         /**
          * The id of the employee to be dropped from a student, taken from user input
@@ -307,7 +303,6 @@ public class StudentResidenceSystem {
         manager.removeStudent(SID);
         student.removeManager(employeeID);
 
-        //scanner.close();
     }
     
     /**
@@ -378,6 +373,7 @@ public class StudentResidenceSystem {
         Scanner scanner = new Scanner(System.in); 
         StudentResidenceSystem SRS = new StudentResidenceSystem(scanner);
 
+        outerloop:
         while (true) { 
             System.out.println("Student Residence System:");
             System.out.println("1. Quit");
@@ -394,8 +390,9 @@ public class StudentResidenceSystem {
 
             switch (selection) {
                 case 1:
+                    System.out.println(SRS.toString());
                     scanner.close();
-                    break;
+                    break outerloop;
                 case 2:
                     SRS.addStudent();
                     break;

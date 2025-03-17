@@ -9,6 +9,13 @@
             "name": "StudentResidenceSystem",
             "request": "launch",
             "mainClass": "StudentResidenceSystem",
+            "projectName": "SENG-3120---Assignment-3-OOP-with-Java_b78a1f48"
+        },
+        {
+            "type": "java",
+            "name": "StudentResidenceSystem",
+            "request": "launch",
+            "mainClass": "StudentResidenceSystem",
             "projectName": "SENG-3120---Assignment-3-OOP-with-Java_ecc33d35"
         },
         {
