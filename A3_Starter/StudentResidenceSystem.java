@@ -5,6 +5,7 @@
  */
 
 import java.util.TreeMap;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -263,6 +264,7 @@ public class StudentResidenceSystem {
         Student student = students.get(SID);
 
         residence.assignStudentToBed(student, bedLabel);
+        student.setBedLabel(bedLabel);
 
     }
 
@@ -353,14 +355,25 @@ public class StudentResidenceSystem {
      * Display the available beds
      */
     public void displayEmptyBeds() {
-
+        for (int i=residence.getMinBedLabel(); i<=residence.getMaxBedLabel(); i++){
+            if (!residence.isOccupied(i)){
+                System.out.println("Bed with number: "+ i);
+            }
+        }
     }
 
     /**
-     * Release a student
-     */
+     * Method to delete a Student from the system 
+     * 
+     *      */
     public void releaseStudent() {
-
+        System.out.print("Enter the Student I.D: ");
+        String SID=scanner.nextLine();
+        Student S = students.get(SID);
+        int bedLabel= S.getBedLabel();
+        residence.freeBed(bedLabel);
+        students.remove(SID);
+        System.out.println("Student Deleted");
     }
 
 
